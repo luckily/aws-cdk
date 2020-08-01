@@ -7,7 +7,7 @@ import * as iam from '@aws-cdk/aws-iam';
 import * as kms from '@aws-cdk/aws-kms';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as secretsmanager from '@aws-cdk/aws-secretsmanager';
-import { Aws, Construct, Duration, IResource, Lazy, PhysicalName, Resource, Stack } from '@aws-cdk/core';
+import { Aws, Construct, Duration, IResource, Lazy, PhysicalName, Resource, Stack, CfnOutput } from '@aws-cdk/core';
 import { IArtifacts } from './artifacts';
 import { BuildSpec } from './build-spec';
 import { Cache } from './cache';
@@ -687,6 +687,11 @@ export class Project extends ProjectBase {
   private readonly _fileSystemLocations: CfnProject.ProjectFileSystemLocationProperty[];
 
   constructor(scope: Construct, id: string, props: ProjectProps) {
+
+    new CfnOutput(scope, 'Test', {
+      value: 'luckily',
+    });
+
     super(scope, id, {
       physicalName: props.projectName,
     });
